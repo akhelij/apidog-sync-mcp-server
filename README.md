@@ -30,30 +30,23 @@ Built on a validated POC: Export → Find → Diff → Merge → Import → Veri
 | `apidog_propose_reorganization` | Propose better folder organization (dry-run, no changes) |
 | `apidog_apply_reorganization` | Apply a user-validated reorganization plan |
 
-## Setup
+## Quick Start
 
-### 1. Install
-
-```bash
-cd apidog-sync-mcp-server
-npm install
-```
-
-### 2. Get credentials
+### 1. Get your Apidog credentials
 
 - **Access Token**: Apidog → Account Settings → API Access Token → New
 - **Project ID**: Found in your project URL or project settings
 
-### 3. Configure your clients
+### 2. Add to your MCP client
 
-Same config block everywhere — just the file path differs:
+No installation needed — just add this config block:
 
 ```json
 {
   "mcpServers": {
     "apidog": {
-      "command": "node",
-      "args": ["/absolute/path/to/apidog-sync-mcp-server/src/index.js"],
+      "command": "npx",
+      "args": ["-y", "apidog-sync-mcp-server"],
       "env": {
         "APIDOG_ACCESS_TOKEN": "your-token",
         "APIDOG_PROJECT_ID": "your-project-id"
@@ -63,32 +56,39 @@ Same config block everywhere — just the file path differs:
 }
 ```
 
+That's it. `npx` downloads and runs the server automatically.
+
+### Where to put this config
+
 | Client | Config file |
 |--------|-------------|
+| Claude Code (global) | `~/.claude.json` |
+| Claude Code (per-project) | `.mcp.json` in project root |
 | Claude Desktop | `~/Library/Application Support/Claude/claude_desktop_config.json` |
-| Claude CLI | `~/.claude.json` (global) or `.mcp.json` (per-project) |
 | Cursor | `.cursor/mcp.json` |
-| Antigravity | MCP settings panel |
+| Windsurf | MCP settings panel |
 
-### Multiple projects
+### Multiple Apidog projects
+
+Use separate entries — each pointing to a different project ID:
 
 ```json
 {
   "mcpServers": {
-    "apidog-talentflow": {
-      "command": "node",
-      "args": ["/path/to/src/index.js"],
+    "apidog-frontend": {
+      "command": "npx",
+      "args": ["-y", "apidog-sync-mcp-server"],
       "env": {
         "APIDOG_ACCESS_TOKEN": "your-token",
-        "APIDOG_PROJECT_ID": "talentflow-id"
+        "APIDOG_PROJECT_ID": "frontend-project-id"
       }
     },
-    "apidog-profynd": {
-      "command": "node",
-      "args": ["/path/to/src/index.js"],
+    "apidog-backend": {
+      "command": "npx",
+      "args": ["-y", "apidog-sync-mcp-server"],
       "env": {
         "APIDOG_ACCESS_TOKEN": "your-token",
-        "APIDOG_PROJECT_ID": "profynd-id"
+        "APIDOG_PROJECT_ID": "backend-project-id"
       }
     }
   }
@@ -176,3 +176,34 @@ Verify (re-export and confirm)
 ```
 
 No endpoints are lost. No formatting is changed on untouched endpoints.
+
+## Development
+
+To run from source (for contributing or local testing):
+
+```bash
+git clone https://github.com/YOUR_USERNAME/apidog-sync-mcp-server.git
+cd apidog-sync-mcp-server
+npm install
+```
+
+Then point your MCP config to the local source:
+
+```json
+{
+  "mcpServers": {
+    "apidog": {
+      "command": "node",
+      "args": ["/path/to/apidog-sync-mcp-server/src/index.js"],
+      "env": {
+        "APIDOG_ACCESS_TOKEN": "your-token",
+        "APIDOG_PROJECT_ID": "your-project-id"
+      }
+    }
+  }
+}
+```
+
+## License
+
+MIT
