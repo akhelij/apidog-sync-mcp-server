@@ -1,0 +1,46 @@
+{
+  "name": "apidog-sync-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for reading, writing, and organizing API documentation in Apidog. Supports endpoint CRUD, schema management, folder reorganization, and format-preserving updates via OpenAPI export/import.",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "apidog-sync-mcp": "src/index.js"
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "apidog",
+    "api-documentation",
+    "openapi",
+    "swagger",
+    "api-docs",
+    "mcp-server",
+    "claude",
+    "ai-tools"
+  ],
+  "author": "Mohamed",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/apidog-sync-mcp-server.git"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/apidog-sync-mcp-server#readme",
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/apidog-sync-mcp-server/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}
