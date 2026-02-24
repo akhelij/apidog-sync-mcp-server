@@ -1,4 +1,4 @@
-# Apidog Sync MCP Server v2
+# Apidog Sync - MCP Server
 
 MCP server for **reading, writing, and organizing** API documentation in Apidog. Works across Claude Desktop, Claude CLI, Cursor, and Antigravity.
 
